@@ -1,1 +1,230 @@
+The OSI and TCP/IP Models :
+TCP(Transmission Control Protocol)
+IP(Internet Protocol)
 
+1.OSI (Open Systems Interconnection) হলো একটি রেফারেন্স মডেল যা কম্পিউটার নেটওয়ার্কে ডেটা কীভাবে এক ডিভাইস থেকে অন্য ডিভাইসে আদান-প্রদান হয়
+তা ব্যাখ্যা করে।
+
+এটি International Organization for Standardization দ্বারা তৈরি করা হয়েছে এবং এতে ৭টি স্তর (Layer) রয়েছে।
+
+OSI-এর ৭টি Layer
+Physical Layer – কেবল, সিগন্যাল, হার্ডওয়্যার
+Data Link Layer – MAC Address, Frame
+Network Layer – IP Address, Routing
+Transport Layer – TCP, UDP, Data Delivery
+Session Layer – Connection Management
+Presentation Layer – Data Format, Encryption
+Application Layer – User Services (HTTP, FTP, SMTP)
+
+2.TCP/IP (Transmission Control Protocol/Internet Protocol) হলো ইন্টারনেটে ডেটা আদান-প্রদানের জন্য ব্যবহৃত স্ট্যান্ডার্ড নেটওয়ার্কিং প্রোটোকল স্যুট।
+
+এটি নির্ধারণ করে কীভাবে ডেটা এক কম্পিউটার থেকে অন্য কম্পিউটারে পাঠানো, রাউট করা এবং গ্রহণ করা হবে।
++--------------------+
+|  Application Layer |
++--------------------+
+|   Transport Layer  |
++--------------------+
+|    Internet Layer  |
++--------------------+
+| Network Access     |
+|      Layer         |
++--------------------+
+
+TCP/IP Model-এর 4টি Layer
+i.Application Layer
+  ব্যবহারকারীর অ্যাপ্লিকেশনের সাথে কাজ করে
+  উদাহরণ: HTTP, HTTPS, FTP, SMTP, DNS
+ii.Transport Layer
+  এই Layer ডেটা এক হোস্ট থেকে অন্য হোস্টে নির্ভরযোগ্যভাবে পৌঁছে দেয়ে
+  প্রোটোকল: TCP, UDP
+  TCP (Transmission Control Protocol)
+  UDP (User Datagram Protocol)
+  উদাহরণ:
+    TCP → Web browsing, Email
+    UDP → Online gaming, Video streaming
+iii.Internet Layer
+  IP Address এবং Routing পরিচালনা করে
+  প্রোটোকল: IP, ICMP
+iv.Network Access (Link) Layer
+  নেটওয়ার্ক মিডিয়ার মাধ্যমে ডেটা পাঠায়
+  Ethernet, Wi-Fi ইত্যাদি
+
+Data Encapsulation Summary :
+What is Data Encapsulation?
+
+Data Encapsulation is the process of adding protocol headers (and sometimes trailers) to data as it moves down the network layers 
+before transmission.
+
+Data Encapsulation হলো নেটওয়ার্কে ডেটা প্রেরণের সময় প্রতিটি লেয়ারে ডেটার সাথে অতিরিক্ত নিয়ন্ত্রণ তথ্য (Header এবং কখনও Trailer) যোগ করার প্রক্রিয়া।
+
+যখন ডেটা প্রেরকের (Sender) Application Layer থেকে নিচের লেয়ারগুলো অতিক্রম করে, তখন প্রতিটি লেয়ার নিজের তথ্য যুক্ত করে। এই প্রক্রিয়াকে Encapsulation বলা হয়।
+
+Encapsulation Process:
+1.Application Layer
+   Data তৈরি করে।
+2.Transport Layer
+   TCP/UDP Header যোগ করে।
+   একে Segment বলা হয়।
+3.Network Layer
+   IP Header যোগ করে।
+   একে Packet বলা হয়।
+4.Data Link Layer
+   Header এবং Trailer যোগ করে।
+   একে Frame বলা হয়।
+5.Physical Layer
+   Frame কে Bits এ রূপান্তর করে প্রেরণ করে।
+
+Decapsulation:
+What is Decapsulation?
+Decapsulation is the process of removing those headers at the receiving side to recover the original message.
+
+গ্রাহকের (Receiver) পাশে এই Header ও Trailer ধাপে ধাপে অপসারণ করা হয়। এই প্রক্রিয়াকে Decapsulation বলা হয়।
+
+Exam Definition
+
+Data Encapsulation হলো নেটওয়ার্কে ডেটা প্রেরণের সময় প্রতিটি লেয়ার দ্বারা ডেটার সাথে Header/Trailer যুক্ত করার প্রক্রিয়া, যাতে ডেটা সঠিকভাবে 
+গন্তব্যে পৌঁছাতে পারে।
+
+
+Symbols
+M = Message/Data
+Ht = Transport Header (TCP/UDP Header)
+Hn = Network Header (IP Header)
+Hl = Link Header (MAC Header)
+Source Host (Sender)
+
+যখন Application Layer ডেটা পাঠায়:
+
+1. Application Layer
+M
+
+শুধু Message থাকে।
+
+2. Transport Layer
+Ht + M
+
+TCP/UDP Header যুক্ত হয়।
+এটিকে Segment বলে।
+
+3. Network Layer
+Hn + Ht + M
+
+IP Header যুক্ত হয়।
+এটিকে Datagram/Packet বলে।
+
+4. Link Layer
+Hl + Hn + Ht + M
+
+MAC Header যুক্ত হয়।
+এটিকে Frame বলে।
+
+5. Physical Layer
+
+Frame → Bits আকারে মিডিয়ার মাধ্যমে পাঠানো হয়।
+
+Link-Layer Switch
+
+Switch শুধুমাত্র:
+
+Link Layer
+Physical Layer
+
+নিয়ে কাজ করে।
+
+অর্থাৎ Switch:
+
+✔ MAC Address দেখে
+
+❌ IP Header দেখে না
+
+❌ TCP Header দেখে না
+
+Frame গ্রহণ করে এবং Frame ফরওয়ার্ড করে।
+
+Router:
+
+Router কাজ করে:
+
+Network Layer
+Link Layer
+Physical Layer
+
+Router:
+
+✔ IP Address দেখে
+
+✔ Routing Table ব্যবহার করে
+
+❌ Application Data দেখে না
+
+Router পুরোনো Link Header খুলে নতুন Link Header যুক্ত করে পরবর্তী নেটওয়ার্কে পাঠায়।
+
+Destination Host (Receiver)
+
+Receiver-এর কাছে পৌঁছানোর পর:
+
+Link Layer
+Hl সরানো হয়
+Network Layer
+Hn সরানো হয়
+Transport Layer
+Ht সরানো হয়
+Application Layer
+M
+
+মূল Message Application-এ পৌঁছে যায়।
+
+এই প্রক্রিয়াকে Decapsulation বলে।
+
+
+Networking Icons :
+
+Networking Icons হলো নেটওয়ার্ক ডায়াগ্রামে বিভিন্ন ডিভাইস ও উপাদানকে চিহ্নিত করার জন্য ব্যবহৃত প্রতীক (Symbols)।
+
+সাধারণ Networking Icons
+Icon	Device	কাজ
+💻	Computer/PC	End User Device
+🖥️	Server	সেবা প্রদান করে
+📶	Wireless Access Point	Wi-Fi সংযোগ দেয়
+🔀	Switch	MAC Address অনুযায়ী Frame Forward করে
+🌐	Router	IP Address অনুযায়ী Packet Route করে
+🔁	Hub	সব Port-এ Data Broadcast করে
+🔥	Firewall	Network Security প্রদান করে
+☁️	Internet/Cloud	Internet বা WAN নির্দেশ করে
+🖨️	Printer	Network Printer
+📱	Mobile Device	Smartphone/Tablet
+
+
+ Networking Devices :
+
+| Device   | OSI Layer |
+| -------- | --------- |
+| Repeater | Layer 1   |
+| Hub      | Layer 1   |
+| Bridge   | Layer 2   |
+| Switch   | Layer 2   |
+| Router   | Layer 3   |
+| Gateway  | Layer 7   |
+| Firewall | Layer 3–7 |
+
+Physical Layer:
+LAN Device Connection Guidelines:
+What is LAN?
+A LAN (Local Area Network) connects multiple devices (computers, printers, servers) within a small area like a home, lab,
+office, or building using Ethernet or Wi-Fi.
+
+Basic LAN Devices:
+Router → Connects LAN to internet and manages IP addresses
+Switch → Connects devices inside LAN
+Hub → Older/simple LAN device (less efficient)
+Ethernet Cable → Physical connection medium
+Computers / Printers / Servers → End devices
+
+Computer connection LAN 
+https://youtu.be/a8d46SYrRto?si=E0YH0Xb_UCZQDR7N
+
+Cisco packet trackter:
+https://youtu.be/h2mbop96U5w?si=z5anogsd8CRuohxI
+
+
+ IPv4 Address Introduction :
